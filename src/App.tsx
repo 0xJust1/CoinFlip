@@ -1,7 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useAccount, useContractRead, useContractWrite, useTransaction, useWatchContractEvent, usePublicClient } from 'wagmi'
+import { useAccount, useContractRead, useContractWrite, useTransaction, usePublicClient } from 'wagmi'
 import { type Log, decodeEventLog } from 'viem'
 import { parseEther } from 'viem'
 import './App.css'
@@ -54,16 +53,6 @@ const CONTRACT_ABI = [{
   ],
 }]
 
-// Add type definition for GamePlayed event args
-type GamePlayedEvent = {
-  args: {
-    player: string;
-    bet: bigint;
-    didWin: boolean;
-  };
-  eventName: string;
-}
-
 // Format total won (Wei to MON, 4 decimals, with commas)
 const formatMon = (wei: bigint | undefined) => {
   if (!wei) return '0.0000';
@@ -108,12 +97,6 @@ function App() {
   }
 
   // Contract reads
-  const { data: minBet } = useContractRead({
-    address: CONTRACT_ADDRESS as `0x${string}`,
-    abi: CONTRACT_ABI,
-    functionName: 'minBet',
-  })
-
   const { data: playerStats, refetch: refetchPlayerStats } = useContractRead({
     address: CONTRACT_ADDRESS as `0x${string}`,
     abi: CONTRACT_ABI,

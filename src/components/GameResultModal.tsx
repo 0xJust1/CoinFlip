@@ -34,7 +34,6 @@ export const GameResultModal = ({
   }, [isOpen, result, choice, winAmount, transactionHash])
 
   const isWin = result === choice
-  const etherscanUrl = `https://etherscan.io/tx/${transactionHash}`
 
   console.log('GameResultModal rendering with isOpen:', isOpen)
 
