@@ -6,7 +6,6 @@ import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
-import { mainnet, sepolia } from 'wagmi/chains';
 
 // Define Monad Testnet
 const monadTestnet = {
@@ -31,18 +30,18 @@ const monadTestnet = {
 // Create a client
 const queryClient = new QueryClient();
 
-// Configure chains & providers
+// Configure chains & providers - FORCE MONAD TESTNET ONLY
 const config = getDefaultConfig({
   appName: 'CoinFlip',
   projectId: 'c4b0c0c0c0c0c0c0c0c0c0c0c0c0c0c0', // Replace with your actual WalletConnect project ID
-  chains: [monadTestnet, mainnet, sepolia],
+  chains: [monadTestnet], // Only include Monad Testnet
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
+        <RainbowKitProvider initialChain={monadTestnet}>
           <App />
         </RainbowKitProvider>
       </QueryClientProvider>

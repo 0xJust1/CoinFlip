@@ -297,7 +297,13 @@ function App() {
       <div className="container mx-auto px-4 py-8">
         <header className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">CoinFlip</h1>
-          <ConnectButton />
+          <div className="flex items-center gap-4">
+            <div className="bg-gray-800 px-4 py-2 rounded-lg">
+              <span className="text-sm text-gray-400">Network: </span>
+              <span className="font-medium">Monad Testnet</span>
+            </div>
+            <ConnectButton />
+          </div>
         </header>
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Game Panel */}
