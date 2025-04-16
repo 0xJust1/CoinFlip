@@ -11,7 +11,7 @@ export const Footer = () => {
         </div>
         <div className="flex justify-center items-center gap-6">
           <a
-            href="https://twitter.com/your-twitter"
+            href="https://x.com/0xJust1"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-blue-400 transition-colors"
@@ -19,7 +19,7 @@ export const Footer = () => {
             <FaTwitter size={24} />
           </a>
           <a
-            href="https://github.com/your-github/coinflip"
+            href="https://github.com/0xJust1/coinflip"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-gray-400 transition-colors"
