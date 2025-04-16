@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount, useContractRead, useContractWrite, useTransaction, usePublicClient } from 'wagmi'
 import { parseEther, type Log, decodeEventLog } from 'viem'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import './App.css'
 import { AnimatedCoin } from './components/AnimatedCoin'
 import { BetAmountSelector } from './components/BetAmountSelector'
@@ -292,12 +293,12 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-800 text-white relative pb-16">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">CoinFlip</h1>
-        </div>
-
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="container mx-auto px-4 py-8">
+        <header className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">CoinFlip</h1>
+          <ConnectButton />
+        </header>
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Game Panel */}
           <div className="bg-gray-800 p-6 rounded-lg flex-1">
