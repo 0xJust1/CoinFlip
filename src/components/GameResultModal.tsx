@@ -13,15 +13,7 @@ interface GameResultModalProps {
   transactionHash: string | null
 }
 
-export const GameResultModal = ({
-  isOpen,
-  onClose,
-  onPlayAgain,
-  result,
-  choice,
-  winAmount,
-  transactionHash,
-}: GameResultModalProps) => {
+export function GameResultModal({ isOpen, onClose, onPlayAgain, result, choice, winAmount, transactionHash }: GameResultModalProps) {
   // Debug props
   useEffect(() => {
     console.log('GameResultModal props:', {

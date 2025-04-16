@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount, useContractRead, useContractWrite, useTransaction, usePublicClient } from 'wagmi'
-import { type Log, decodeEventLog } from 'viem'
-import { parseEther } from 'viem'
+import { parseEther, type Log, decodeEventLog } from 'viem'
 import './App.css'
 import { AnimatedCoin } from './components/AnimatedCoin'
 import { BetAmountSelector } from './components/BetAmountSelector'
 import { GameResult } from './components/GameResult'
 import { GameResultModal } from './components/GameResultModal'
 import { Footer } from './components/Footer'
-import { gameStatsService } from './services/gameStats'
 import { GlobalStats } from './components/GlobalStats'
+import { gameStatsService } from './services/gameStats'
 
 // Replace with your deployed contract address
 const CONTRACT_ADDRESS = '0x4A3D7D2cE634ACe79de2DCD5461590bdf567dB29'
@@ -59,6 +57,15 @@ const formatMon = (wei: bigint | undefined) => {
   const mon = Number(wei) / 1e18;
   return mon.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 });
 };
+
+// Remove GamePlayedEvent type definition
+type GameResult = {
+  player: string
+  choice: boolean
+  result: boolean
+  amount: bigint
+  timestamp: number
+}
 
 function App() {
   const { address, isConnected } = useAccount()
@@ -289,7 +296,6 @@ function App() {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold">CoinFlip</h1>
-          <ConnectButton />
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-8">
@@ -402,7 +408,6 @@ function App() {
               ) : (
                 <div className="text-center py-8">
                   <p className="text-gray-400 mb-4">Connect your wallet to view stats</p>
-                  <ConnectButton />
                 </div>
               )}
             </div>
