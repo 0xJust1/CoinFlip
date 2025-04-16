@@ -3,7 +3,23 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Add validation and logging
+if (!supabaseUrl) {
+  console.error('VITE_SUPABASE_URL is not defined in environment variables')
+}
+
+if (!supabaseAnonKey) {
+  console.error('VITE_SUPABASE_ANON_KEY is not defined in environment variables')
+}
+
+// Log the URL (without the key for security)
+console.log('Supabase URL:', supabaseUrl ? 'Defined' : 'Undefined')
+
+// Create the client with error handling
+export const supabase = createClient(
+  supabaseUrl || 'https://ckfdwigcijnmmxpuexjz.supabase.co', // Fallback URL
+  supabaseAnonKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNrZmR3aWdjaWpubW14cHVleGp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ4MTkyMTQsImV4cCI6MjA2MDM5NTIxNH0.is_4rj2u6xxYyxKgRmwTj6RQfghuMHnTjqVU8_I8MGQ' // Fallback key
+)
 
 // Types for our database tables
 export type GameRecord = {
